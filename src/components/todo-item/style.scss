@@ -1,0 +1,39 @@
+.todo-item {
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  position: relative;
+  .item {
+    flex: 1;
+  }
+
+  .content-box {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+  .id-box {
+    width: 30px;
+    padding: 0 10px;
+  }
+  .title {
+    font-weight: bold;
+  }
+
+  .content {
+    color: #aaa;
+    flex: 2;
+  }
+
+  .deleted {
+    &::after {
+      content: " ";
+      position: absolute;
+      width: 80%;
+      height: 1px;
+      background-color: #aaa;
+      margin-left: 10px;
+    }
+    opacity: 0.6;
+  }
+}

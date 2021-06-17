@@ -1,0 +1,16 @@
+.operation-bar {
+  display: flex;
+  padding: 10px 20px;
+
+  .btn {
+    margin-right: 10px;
+    border-radius: 6px;
+    padding: 6px 14px;
+    border: 1px solid red;
+    color: red;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
