@@ -1,10 +1,6 @@
 import React from "react";
 import './style.scss';
 
-interface IState {
-  _show: boolean;
-}
-
 interface IProps {
   title?: string;
   footer?: any;
@@ -12,43 +8,53 @@ interface IProps {
   confirmText?: string;
   customMode?: boolean;
   show: boolean;
+  onChange: (val: boolean) => void;
+  onConfirm: () => void;
 }
 
-export default class Modal extends React.Component<IProps, IState>{
-  state: IState;
+export default class Modal extends React.Component<IProps>{
   constructor(props: IProps) {
     super(props);
     this.state = {
-      _show: this.props.show
-    }
+
+    };
   }
 
-  handleClick = () => {
-    this.setState({
-      _show: false
-    })
-    
+  closeModal = () => {
+    this.props.onChange(false);
   }
-  
-  
+
+  handleClickContent = (e: any) => {
+    e.stopPropagation();
+  }
+
+  handleConfirm = () => {
+    // todo
+    this.props.onConfirm();
+
+    this.closeModal();
+  }
 
   render() {
-    const {_show} = this.state;
-    const {children, title = '标题', cancelText = '取消', confirmText = '确定', customMode = false} = this.props;
+    const {children, title = '标题', cancelText = '取消', confirmText = '确定', customMode = false, show} = this.props;
     return (
-      <div className={`modal ${_show ? '' : 'hidden'}`} onClick={this.handleClick} >
+      <div className={`modal ${show ? '' : 'hidden'}`} onClick={this.closeModal} >
         {
           customMode ? (
             <div className="content">
-              {children}
+              <div>{children}</div>
             </div>
           ) : (
-            <div>
+            <div className="content-wrapper" onClick={this.handleClickContent}>
               <div className="title">
                 {title}
               </div>
               <div className="content">
                 {children}
+              </div>
+              <div className="footer">
+                <div className="btn" onClick={this.closeModal}>{cancelText}</div>
+                <div className="btn confirmBtn" onClick={this.handleConfirm}>{confirmText}</div>
               </div>
             </div>
           )

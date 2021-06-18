@@ -10,11 +10,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 
   .content {
     background-color: #fff;
     border-radius: 4px;
     padding: 20px;
+  }
+
+  .content-wrapper {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    width: 80vw;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .confirmBtn {
+    background-color: red;
+    color: #fff;
   }
 }
 
